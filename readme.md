@@ -1,10 +1,3 @@
-
-1. npm install
-2. npm install gulp-cli -g
-3. npm install gulp -D
-3. babel install
-    gulpfile.babel.js로 변경
-4. npm install @babel/{core,preset-env,register} -D
-5. gulp 작성
-6. 설치 "gulp-pug", "del", "gulp-webserver", "gulp-image", "pngquant-bin"
-7. 
+# SEED 프로젝트
+ES06, SCSS, PUG 베이스 프론트엔드 시드 프로젝트.
+기본적인 GULP 및 Git 설정됨.

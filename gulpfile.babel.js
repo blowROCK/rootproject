@@ -77,7 +77,9 @@ const scssBuild = () => {
 const deploy = () =>{
   return gulp
     .src("build/**/*")
-    .pipe(ghPages());
+    .pipe(ghPages({
+      brach: "release"
+    }));
 }
 
 const watch = () => {
@@ -98,4 +100,4 @@ const assets = gulp.series([pugBuild, scssBuild, jsBuild]);
 
 export const build = gulp.series([prepare, assets])
 export const dev = gulp.series([build, live]);
-export const upload = gulp.series([build, deploy]);
+export const release = gulp.series([build, deploy]);
