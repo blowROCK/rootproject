@@ -1,8 +1,8 @@
-
 # 베이스 프로젝트
 - **PUG, SCSS, ES06 베이스**
 	> Jquey, flex grid 적용.
 	
+
 - **Gulp babel comand**
 	- dev : 콘솔 포함한 빌드 후, 라이브로드
 	- release : 콘솔 삭제 빌드, 깃허브 브런치 ghPages로 업로드
@@ -10,13 +10,16 @@
 		- clean : /build 폴더 비움 
 		- components : js(uglify), css(miniCSS) 후 concat, merge 함
 		- imgBuild :  모든 img를 최적화함.
-		- 
+		
+
 - **Directory**
-![enter image description here](https://github.com/blowROCK/rootproject/blob/master/dir.png?raw=true)
+	![enter image description here](https://github.com/blowROCK/rootproject/blob/master/dir.png?raw=true)
+
+
 - **Dependencies**
 	> "@babel/core": "^7.6.2"
-"@babel/preset-env": "^7.6.2"
-"@babel/register": "^7.6.2"
+    > "@babel/preset-env": "^7.6.2"
+    "@babel/register": "^7.6.2"
 "babelify": "^10.0.0"
 "browserify": "^16.5.0"
 "browserslist": "^4.7.0"
