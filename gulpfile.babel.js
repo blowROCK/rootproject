@@ -24,9 +24,11 @@ import gulpif from "gulp-if";
 const COMPONENTS = [
   "src/components/jquery/jquery-3.4.1.min.js"
 ]
+
 const COMPONENTS_CSS = [
   "src/components/flexboxgrid/flexboxgrid.min.css"
 ]
+
 const ROUTES = {
   pug: {
     watch: "src/**/*.pug",
@@ -42,9 +44,9 @@ const ROUTES = {
     src : "src/js/main.js",
     dest: "build/js"
   },
-  scss: {
-    watch: "src/scss/**/*.scss",
-    src: "src/scss/style.scss",
+  sass: {
+    watch: "src/sass/**/*.sass",
+    src: "src/sass/style.sass",
     dest: "build/css"
   }
 };
@@ -60,21 +62,24 @@ const components = () => {
   CSS_TASK = gulp.src(COMPONENTS_CSS)
     .pipe(concat('bundle.css'))
     .pipe(miniCSS())
-    .pipe(gulp.dest(ROUTES.scss.dest));
+    .pipe(gulp.dest(ROUTES.sass.dest));
   return merge(JS_TASK, CSS_TASK);
 }
+
 const pugBuild = () => {
   return gulp
     .src(ROUTES.pug.src)
     .pipe(g_pug())
     .pipe(gulp.dest(ROUTES.pug.dest));
 };
+
 const imgBuild = () => {
   return gulp
     .src(ROUTES.img.src)
     .pipe(g_img())
     .pipe(gulp.dest(ROUTES.img.dest));
 };
+
 const jsBuild = () => {
   return gulp
     .src(ROUTES.js.src)
@@ -96,13 +101,13 @@ const webserver = () => {
     );
 };
 
-const scssBuild = () => {
+const sassBuild = () => {
   return gulp
-    .src(ROUTES.scss.src)
+    .src(ROUTES.sass.src)
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(miniCSS())
-    .pipe(gulp.dest(ROUTES.scss.dest));
+    .pipe(gulp.dest(ROUTES.sass.dest));
 };
 
 const deploy = () =>{
@@ -115,7 +120,7 @@ const deploy = () =>{
 
 const watch = () => {
   gulp.watch(ROUTES.pug.watch, pugBuild);
-  gulp.watch(ROUTES.scss.watch, scssBuild);
+  gulp.watch(ROUTES.sass.watch, sassBuild);
   gulp.watch(ROUTES.js.watch, jsBuild);
   gulp.watch(ROUTES.img.src, imgBuild);
 };
@@ -128,10 +133,10 @@ const onProduct = (done) => {
   production = true;
   done();
 }
-// series 보다 runSequence 가 나을지도?
+
 const live = gulp.parallel([webserver, watch]);
 const prepare = gulp.series([clean, components, imgBuild]);
-const assets = gulp.series([pugBuild, scssBuild, jsBuild]);
+const assets = gulp.series([pugBuild, sassBuild, jsBuild]);
 
 export const build = gulp.series([prepare, assets])
 export const dev = gulp.series([build, live]);
